@@ -1,19 +1,55 @@
-/* EDITE SOMENTE OS VALORES ENTRE ASPAS.
-   Use seus dados verdadeiros antes de publicar. Campos vazios são ocultados. */
+/*
+  PERSONALIZE AQUI SEU PORTFÓLIO.
+  - Troque os valores entre aspas (mantenha as vírgulas).
+  - Imagens: coloque screenshots reais em assets/projetos/ e informe o caminho em "imagem".
+  - Campos vazios (LinkedIn, currículo, WhatsApp) são ocultados até você preencher.
+*/
 window.PORTFOLIO = {
   nome: "Rafael Limeira Carlos",
   cargo: "Desenvolvedor de Software",
-  resumo: "Desenvolvimento de aplicativos Android e iOS, sistemas empresariais e soluções web com foco em experiência, desempenho e resultados.",
-  sobre: "Sou Rafael Limeira Carlos, profissional focado em Análise e Desenvolvimento de Sistemas, aplicativos mobile e ferramentas digitais. Meu objetivo é construir experiências intuitivas e sistemas organizados que resolvam problemas reais.",
-  email: "Rafaellimeiracarlos@gmail.com", // Exemplo: "seuemail@dominio.com"
-  whatsapp: "5511999660038", // Exemplo: "5511999999999" (somente números, com DDI)
-  github: "https://github.com/rafaellimeiracarlos-cmd?tab=repositories", // Exemplo: "https://github.com/seuusuario"
-  linkedin: "https://www.linkedin.com/in/rafaellimeiracarlos", // Exemplo: "https://linkedin.com/in/seuusuario"
-  curriculo: "", // Exemplo: "assets/curriculo-rafael.pdf"
-  habilidades: ["Android", "iOS", "Desenvolvimento de Sistemas", "Interfaces responsivas", "Análise de requisitos", "Gestão de estoque", "Controle de vendas", "Experiência do usuário"],
+  resumo: "Construindo soluções digitais com foco em Android, sistemas empresariais e interfaces web responsivas. Tecnologia prática para transformar boas ideias em projetos.",
+  sobre: "Sou estudante de Análise e Desenvolvimento de Sistemas na ETEC Professor Basílides de Godoy e desenvolvo projetos próprios para praticar programação e criar soluções úteis. Tenho interesse em aplicativos Android, interfaces web e sistemas de gestão. Também trago experiência em logística e processos operacionais, que aplico à forma como penso e organizo projetos de tecnologia.",
+  email: "rafaellimeiracarlos@gmail.com", // Email exibido na imagem do seu perfil GitHub. Altere ou apague se preferir.
+  whatsapp: "5511999660038", // Ex.: "5511999999999", apenas números.
+  github: "https://github.com/rafaellimeiracarlos-cmd",
+  linkedin: "https://www.linkedin.com/in/rafaellimeiracarlos", // Cole a URL real do seu LinkedIn.
+  curriculo: "", // Ex.: "assets/curriculo-rafael.pdf" (envie o PDF na mesma pasta).
+  habilidades: ["Kotlin", "Java", "Android", "HTML5", "CSS3", "JavaScript", "Git", "GitHub", "Design responsivo", "Lógica de programação", "Análise de Sistemas", "Sistemas de Gestão"],
   projetos: [
-    { titulo: "Sistema de Estoque e Vendas", categoria: "sistemas", tipo: "Sistema de gestão", descricao: "Conceito de solução para cadastro de produtos, estoque, vendas e controle de permissões.", tecnologias: ["Gestão", "Dashboard", "Permissões"], link: "" },
-    { titulo: "Aplicativo de Autopeças", categoria: "mobile", tipo: "Aplicativo mobile", descricao: "Conceito de plataforma para catálogo de autopeças, pedidos e acompanhamento de entregas.", tecnologias: ["Android", "Catálogo", "Entregas"], link: "" },
-    { titulo: "Portal Administrativo", categoria: "web", tipo: "Interface web", descricao: "Exemplo de interface de painel administrativo responsivo para negócios.", tecnologias: ["Web", "Responsivo", "Dashboard"], link: "" }
+    {
+      titulo: "RcarAppNovo", categoria: "mobile", tipo: "REPOSITÓRIO ANDROID", destaque: "Aplicativo Android",
+      descricao: "Projeto publicado no GitHub com código em Kotlin. Acesse o repositório para conhecer sua implementação.",
+      tecnologias: ["Kotlin", "Android", "Mobile"],
+      link: "https://github.com/rafaellimeiracarlos-cmd/RcarAppNovo",
+      imagem: "" // Ex.: "assets/projetos/rcar-app.png"
+    },
+    {
+      titulo: "Restaurante", categoria: "mobile", tipo: "PROJETO MOBILE", destaque: "Interface para restaurante",
+      descricao: "Projeto em Kotlin disponível no meu GitHub. Confira a estrutura e o código no repositório.",
+      tecnologias: ["Kotlin", "Mobile"],
+      link: "https://github.com/rafaellimeiracarlos-cmd/Restaurante",
+      imagem: ""
+    },
+    {
+      titulo: "Conversor-de-Moesdas", categoria: "mobile", tipo: "PROJETO EM KOTLIN", destaque: "Conversor de moedas",
+      descricao: "Projeto de programação em Kotlin para acompanhar a evolução das minhas habilidades técnicas.",
+      tecnologias: ["Kotlin", "Lógica"],
+      link: "https://github.com/rafaellimeiracarlos-cmd/Conversor-de-Moesdas",
+      imagem: ""
+    },
+    {
+      titulo: "Calculadora-saude", categoria: "web", tipo: "PROJETO WEB", destaque: "Interface web",
+      descricao: "Repositório público para conhecer a organização e os estilos de um projeto web.",
+      tecnologias: ["CSS", "Web"],
+      link: "https://github.com/rafaellimeiracarlos-cmd/Calculadora-saude",
+      imagem: ""
+    },
+    {
+      titulo: "criando-jogo", categoria: "sistemas", tipo: "ESTUDO E PRÁTICA", destaque: "Projeto em Kotlin",
+      descricao: "Experimento de programação publicado no GitHub como parte dos meus estudos.",
+      tecnologias: ["Kotlin", "Programação"],
+      link: "https://github.com/rafaellimeiracarlos-cmd/criando-jogo",
+      imagem: ""
+    }
   ]
 };

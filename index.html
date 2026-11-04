@@ -1,250 +1,90 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#ffffff" />
-  <meta name="description" content="Portfólio de Rafael Limeira — desenvolvimento de aplicativos Android, iOS e sistemas sob medida." />
-  <title>Rafael Limeira carlos | Desenvolvedor de Software</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1d3b">
+  <meta name="description" content="Portfólio de Rafael Limeira Carlos. Desenvolvimento Android, soluções web, sistemas empresariais e projetos em Kotlin.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Rafael Limeira Carlos | Desenvolvedor de Software">
+  <meta property="og:description" content="Conheça meus projetos Android, sistemas, interfaces web e soluções digitais.">
+  <title>Rafael Limeira Carlos | Desenvolvedor de Software</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="config.js" defer></script>
+  <script src="script.js" defer></script>
 </head>
 <body>
-  
-  <a href="#conteudo" class="skip">Ir para o conteúdo</a>
-  
-  <header class="header" id="inicio">
-   
-    <div class="container nav">
-      <a class="brand" href="#inicio" aria-label="Página inicial">
-       
-        <span 
-        class="brand-mark">RL</span>
-        
-        <span>Rafael<span class="blue">.</span>Dev</span></a>
-      
-        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
-     
-     
-        <nav id="menu" class="menu" aria-label="Navegação principal">
-        
-          <a href="#sobre">Sobre</a>
-          <a href="#servicos">Serviços</a>
-          <a href="#projetos">Projetos</a>
-          <a href="#habilidades">Habilidades</a>
-          <a href="#contato" class="nav-cta">Contato</a>
+  <a href="#conteudo" class="skip-link">Pular para o conteúdo</a>
+  <div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
+  <header class="site-header" id="inicio">
+    <div class="container header-inner">
+      <a class="brand" href="#inicio" aria-label="Rafael ponto Dev, voltar ao início"><span class="brand-symbol">&lt;/&gt;</span><span>Rafael<span class="brand-dot">.</span>Dev</span></a>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir navegação" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
+      <nav id="navLinks" class="nav-links" aria-label="Navegação principal">
+        <a href="#sobre">Sobre</a><a href="#servicos">Especialidades</a><a href="#laboratorio">Demo interativa</a><a href="#projetos">Projetos</a><a href="#habilidades">Habilidades</a><a class="nav-contact" href="#contato">Vamos conversar <span aria-hidden="true">↗</span></a>
       </nav>
     </div>
   </header>
- 
-  <main id="conteudo">
-    <section class="hero section">
-      <div class="container hero-grid">
-      <div class="hero-copy">
-        <div class="eyebrow">
-          <span class="status-dot">
 
-          </span> DESENVOLVIMENTO DE SOFTWARE</div>
-        
-          <h1>Olá, eu sou <span class="blue" data-field="nome">Rafael Limeira Carlos</span><br/>e transformo ideias em <span class="accent">soluções digitais.</span></h1>
-        
-          <p class="lead" data-field="resumo">Desenvolvimento de aplicativos Android e iOS, sistemas empresariais e soluções web com foco em experiência, desempenho e resultados.</p>
-        
+  <main id="conteudo">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-background" aria-hidden="true"></div>
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <span class="eyebrow"><span class="pulse-dot"></span> DISPONÍVEL PARA OPORTUNIDADES E PROJETOS</span>
+          <p class="hero-pretitle">Olá, eu sou</p>
+          <h1 id="hero-title"><span data-field="nome">Rafael Limeira Carlos</span><span class="hero-title-gradient">Desenvolvedor de Software<span class="title-cursor">_</span></span></h1>
+          <p class="hero-description" data-field="resumo">Construindo soluções digitais com foco em Android, sistemas empresariais e interfaces web responsivas. Tecnologia prática para transformar boas ideias em projetos.</p>
           <div class="hero-actions">
-          <a href="#projetos" class="btn primary">Ver meus projetos <span aria-hidden="true">↗</span>
-        </a>
-        
-        <a href="#contato" class="btn secondary">Fale comigo</a></div>
-        
-        
-        <div class="hero-mini">
-          
-          <div><strong>Android & iOS</strong>
-            <span>Aplicativos mobile</span>
+            <a href="#projetos" class="button button-primary">Explorar projetos <span aria-hidden="true">↗</span></a>
+            <a href="#contato" class="button button-ghost">Entre em contato <span aria-hidden="true">→</span></a>
           </div>
-          
-          <div><strong>Sistemas</strong>
-            <span>Gestão e automação</span>
+          <div class="hero-shortcuts"><a href="https://github.com/rafaellimeiracarlos-cmd" data-contact="github" target="_blank" rel="noopener noreferrer"><span class="link-icon">⌘</span> GitHub <span aria-hidden="true">↗</span></a><span class="shortcut-divider"></span><span class="quick-label">Android <i>•</i> Kotlin <i>•</i> Web</span></div>
+        </div>
+        <div class="hero-stage" id="heroStage" aria-hidden="true">
+          <div class="stage-orbit orbit-one"></div><div class="stage-orbit orbit-two"></div>
+          <div class="editor-window tilt-card">
+            <div class="editor-titlebar"><span class="traffic"><i></i><i></i><i></i></span><span class="editor-filename">RafaelDev.kt</span><span class="editor-tab">● Kotlin</span></div>
+            <div class="editor-body"><aside class="editor-rail"><span>⌘</span><span>▤</span><span>◇</span><span>⚙</span></aside><div class="editor-code"><div><em>01</em><span class="code-purple">class</span> <span class="code-yellow">RafaelDev</span> {</div><div><em>02</em>　<span class="code-purple">val</span> foco = <span class="code-green">"Soluções reais"</span></div><div><em>03</em></div><div><em>04</em>　<span class="code-purple">fun</span> <span class="code-cyan">desenvolver</span>() {</div><div><em>05</em>　　<span class="code-blue">criar</span>(<span class="code-green">"Android"</span>)</div><div><em>06</em>　　<span class="code-blue">criar</span>(<span class="code-green">"Web"</span>)</div><div><em>07</em>　　<span class="code-blue">otimizar</span>(<span class="code-green">"Sistemas"</span>)</div><div><em>08</em>　}</div><div><em>09</em>}</div></div></div>
+            <div class="editor-status"><span>✓ Código estruturado</span><span>UTF-8 · Kotlin</span></div>
           </div>
-          <div><strong>Web</strong>
-            <span>Experiências responsivas</span></div></div>
+          <div class="app-phone tilt-card"><div class="phone-sensor"></div><div class="phone-top"><span>R•Mobile</span><span>◉</span></div><div class="phone-greeting">Visão geral<small>Interface mobile</small></div><div class="phone-highlight"><small>Resumo de atividades</small><strong>Projetos digitais</strong><span class="phone-wave"></span></div><div class="phone-list"><span><i>▣</i><b>Aplicativos</b><em>↗</em></span><span><i>▤</i><b>Gestão</b><em>↗</em></span><span><i>◇</i><b>Interfaces</b><em>↗</em></span></div><div class="phone-bottom">⌂　　 ◉　　 ▤</div></div>
+          <div class="floating-chip chip-kotlin tilt-card"><span class="chip-symbol">&lt;/&gt;</span><span><strong>Kotlin + Android</strong><small>Desenvolvimento mobile</small></span></div>
+          <div class="floating-chip chip-web tilt-card"><span class="chip-check">✓</span><span><strong>100% responsivo</strong><small>Desktop · Tablet · Mobile</small></span></div>
+          <div class="floating-tile tile-chart tilt-card"><span>UI / UX</span><div class="tile-bars"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+          <span class="stage-hint">↗ Passe o mouse nas telas</span>
+        </div>
       </div>
-      
-      <div class="hero-art" aria-label="Ilustração de interface de desenvolvimento">
-        <div class="float-card card-one">
-          <span>●</span> Projeto estruturado</div>
-        
-          <div class="mock-browser">
-          <div class="mock-top">
-          <span class="dots"><i></i><i></i><i></i></span>
-         
-          <span>rafael.dev / dashboard</span>
-          <span>↗</span></div>
-         
-          <div class="mock-body">
-            <div class="mock-side">
-              <div class="side-line active"></div>
-              <div class="side-line"></div>
-              <div class="side-line short"></div>
-              <div class="side-line"></div></div>
-              <div class="mock-main">
-              <div class="mock-heading"></div>
-              <div class="mock-sub"></div>
-              <div class="mock-cards">
-              
-                <div><span>APP</span>
-                 
-                  <strong>Android</strong>
-                  
-                  <small>Mobile</small></div>
-                  
-                  <div>
-                   
-                    <span>APP</span>
-                    <strong>iOS</strong>
-                    <small>Mobile</small></div></div>
-                    <div class="mock-chart">
-                      <span style="height:38%"></span>
-                      <span style="height:61%"></span>
-                      <span style="height:48%"></span>
-                      <span style="height:81%"></span>
-                      <span style="height:66%"></span>
-                      <span style="height:95%"></span></div></div></div></div>
-                      <div class="float-card card-two">✦ Interfaces modernas</div></div>
-    </div>
-  </section>
-   
-   
-   
-    <section class="trusted-strip">
-      
-      <div class="container trusted-inner">
-        
-        <span>FOCO EM SOLUÇÕES PARA</span>
-        
-        <strong>Empresas</strong>
-        
-        <strong>Negócios</strong>
-        
-        <strong>Startups</strong>
-        
-        <strong>Projetos digitais</strong>
-      
-      </div></section>
-    
-      <section class="section" id="sobre">
-        
-        <div class="container two-col">
-          
-          <div>
-            
-            <span class="section-kicker">SOBRE MIM</span>
-            
-            <h2>Mais que código: 
-              
-              <span class="blue">soluções que fazem sentido.</span></h2></div>
-              
-              <div><p data-field="sobre">Sou Rafael Limeira, profissional focado em Análise e Desenvolvimento de Sistemas, aplicativos mobile e ferramentas digitais. Meu objetivo é construir experiências intuitivas e sistemas organizados que resolvam problemas reais.</p><p>Busco oportunidades profissionais e parcerias com empresas e clientes que valorizam qualidade, clareza e evolução contínua.</p><a href="#contato" class="inline-link">Vamos conversar <span>↗</span></a></div></div></section>
-    <section class="section soft" id="servicos">
-      
-      <div class="container">
-        
-        <div class="section-head">
-          
-          <div>
-            
-            <span class="section-kicker">O QUE EU FAÇO</span>
-            
-            <h2>Áreas de atuação</h2>
-          
-          </div><p>Desenvolvimento de produtos digitais com atenção aos detalhes e às necessidades do negócio.</p></div>
-          
-          <div class="service-grid">
-            <article class="service-card">
-              <div class="service-icon">▣</div>
-              
-              <h3>Aplicativos Android</h3>
-              <p>Interfaces modernas, funcionalidades úteis e experiências pensadas para dispositivos Android.</p>
-              
-              <span class="card-label">MOBILE</span></article>
-              
-              <article class="service-card">
-                <div class="service-icon">◈</div>
-                
-                <h3>Aplicativos iOS</h3>
-                
-                <p>Planejamento e desenvolvimento de soluções mobile para o ecossistema iPhone e iPad.</p>
-                
-                <span class="card-label">MOBILE</span></article>
-                
-                <article class="service-card">
-                  <div class="service-icon">▤</div>
-                  <h3>Sistemas de gestão</h3>
-                  <p>Controle de estoque, vendas, permissões e rotinas para tornar operações mais eficientes.</p>
-                  
-                  <span class="card-label">SOFTWARE</span></article>
-                  
-                  <article class="service-card">
-                    <div class="service-icon">⌘</div>
-                    <h3>Web responsiva</h3>
-                    <p>Sites e interfaces que se adaptam a telas de celular, tablet e computador.</p>
-                    <span class="card-label">WEB</span></article></div></div></section>
-    
-                    <section class="section" id="projetos">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <span class="section-kicker">PORTFÓLIO</span>
-            <h2>Projetos em destaque</h2></div>
-            <p>Exemplos de projetos para apresentar suas soluções. Atualize descrições e links em <code>config.js</code> antes de publicar.</p></div>
-            
-            <div class="filters" role="group" aria-label="Filtrar projetos">
-              <button class="filter active" data-filter="todos" aria-pressed="true">Todos</button>
-              <button class="filter" data-filter="mobile" aria-pressed="false">Mobile</button>
-              <button class="filter" data-filter="sistemas" aria-pressed="false">Sistemas</button>
-              <button class="filter" data-filter="web" aria-pressed="false">Web</button></div>
-              
-              <div class="project-grid" id="projectGrid"></div></div></section>
-    
-    
-              <section class="section soft" id="habilidades">
-                <div class="container skills-layout">
-                  <div>
-                    <span class="section-kicker">CONHECIMENTOS</span>
-                    <h2>Tecnologias e competências</h2>
-                    <p>Uma visão das áreas em que atuo ou desenvolvo meus conhecimentos. Personalize esta lista para refletir suas habilidades reais.</p></div>
-                    <div class="skill-tags" id="skillsList"></div></div></section>
-    
-                    <section class="section contact-section" id="contato">
-                      <div class="container contact-grid">
-                        <div>
-                          <span class="section-kicker">VAMOS CONVERSAR</span>
-                          <h2>Tem uma oportunidade ou um projeto em mente?</h2>
-                          <p>Estou aberto a oportunidades de trabalho, colaborações e desenvolvimento de soluções para empresas.</p>
-                          
-                           <div class="contact-links" id="contactLinks"></div></div>
-                         
-                          
-                           <form id="contactForm" class="contact-form">
-                            <h3>Envie uma mensagem</h3>
-                            <label for="nomeContato">Seu nome</label>
-                            <input id="nomeContato" name="nome" type="text" placeholder="Como posso chamar você?" required maxlength="100" />
-                            <label for="emailContato">Seu e-mail</label>
-                            <input id="emailContato" name="email" type="email" placeholder="voce@exemplo.com" required maxlength="150" />
-                            <label for="mensagemContato">Sua mensagem</label>
-                            <textarea id="mensagemContato" name="mensagem" rows="4" placeholder="Conte um pouco sobre sua ideia ou oportunidade..." required maxlength="2000"></textarea>
-                            <button type="submit" class="btn primary full">Preparar e-mail <span>↗</span></button>
-                            <small>O botão abre seu aplicativo de e-mail com a mensagem preenchida. Nenhuma informação é armazenada no site.</small><p id="formFeedback" class="form-feedback" role="status" aria-live="polite"></p></form></div></section>
+      <div class="hero-bottom-gradient" aria-hidden="true"></div>
+    </section>
+
+    <div class="tech-strip"><div class="container tech-strip-inner"><span>TECNOLOGIAS & INTERESSES</span><strong>Kotlin</strong><strong>Android</strong><strong>Java</strong><strong>HTML & CSS</strong><strong>GitHub</strong><strong>Interfaces responsivas</strong></div></div>
+
+    <section id="sobre" class="section section-about"><div class="container about-grid"><div class="reveal"><span class="section-label">01 / SOBRE MIM</span><h2>Desenvolvimento com <span class="highlight">propósito.</span></h2><div class="heading-accent"></div></div><div class="about-text reveal"><p data-field="sobre">Sou estudante de Análise e Desenvolvimento de Sistemas e desenvolvo projetos para praticar programação, criar interfaces e resolver problemas reais. Tenho interesse em aplicativos Android, sistemas de gestão e soluções web.</p><p>Busco oportunidades em tecnologia e projetos que unam organização, criatividade e aprendizado contínuo.</p><div class="about-points"><span>↗ Pensamento analítico</span><span>↗ Foco em experiência de uso</span><span>↗ Aprendizado contínuo</span></div></div></div></section>
+
+    <section id="servicos" class="section section-services"><div class="container"><div class="section-heading reveal"><span class="section-label">02 / ESPECIALIDADES</span><h2>Soluções que ganham <span class="highlight">vida na tela.</span></h2><p>Áreas de desenvolvimento e projetos que exploro. Passe o mouse nos cards para ver os efeitos.</p></div><div class="service-grid">
+      <article class="service-card reveal"><div class="service-top"><span class="service-glyph">▣</span><span class="service-num">01</span></div><h3>Aplicativos Android</h3><p>Interfaces mobile, componentes e recursos desenvolvidos com foco em usabilidade.</p><span class="service-foot">Kotlin · Java <b>↗</b></span></article>
+      <article class="service-card reveal"><div class="service-top"><span class="service-glyph">◇</span><span class="service-num">02</span></div><h3>Projetos iOS</h3><p>Conceitos e experiências de desenvolvimento para ecossistemas móveis.</p><span class="service-foot">Mobile · UX <b>↗</b></span></article>
+      <article class="service-card reveal"><div class="service-top"><span class="service-glyph">▤</span><span class="service-num">03</span></div><h3>Sistemas empresariais</h3><p>Soluções de controle de produtos, estoque, vendas e processos de negócios.</p><span class="service-foot">Gestão · Organização <b>↗</b></span></article>
+      <article class="service-card reveal"><div class="service-top"><span class="service-glyph">⌘</span><span class="service-num">04</span></div><h3>Sites e interfaces web</h3><p>Sites adaptáveis e experiências visuais modernas em qualquer dispositivo.</p><span class="service-foot">HTML · CSS · JavaScript <b>↗</b></span></article>
+    </div></div></section>
+
+    <section id="laboratorio" class="section section-lab"><div class="container"><div class="lab-header reveal"><div><span class="section-label">03 / EXPERIÊNCIA INTERATIVA</span><h2>Uma interface. <span class="highlight">Todas as telas.</span></h2><p>Teste a mesma interface em diferentes formatos. Clique para alternar a visualização.</p></div><div class="device-controls" role="group" aria-label="Formato da prévia"><button type="button" class="device-switch active" data-device="desktop" aria-pressed="true">▣ <span>Desktop</span></button><button type="button" class="device-switch" data-device="tablet" aria-pressed="false">▯ <span>Tablet</span></button><button type="button" class="device-switch" data-device="mobile" aria-pressed="false">▢ <span>Celular</span></button></div></div>
+      <div class="lab-workspace reveal"><div class="lab-sparks" aria-hidden="true"></div><div class="lab-device desktop" id="labDevice"><div class="lab-browser-top"><span class="traffic"><i></i><i></i><i></i></span><span class="lab-url">painel / visão geral</span><span class="lab-viewport-label" id="labViewportLabel">DESKTOP</span></div><div class="lab-app"><aside class="lab-sidebar"><div class="lab-mini-brand">R<span>·</span></div><span class="lab-sidebar-line active"></span><span class="lab-sidebar-line"></span><span class="lab-sidebar-line"></span><span class="lab-sidebar-line short"></span></aside><div class="lab-main"><div class="lab-app-head"><div><small>SEU PAINEL</small><strong>Visão geral</strong></div><span class="lab-avatar">RL</span></div><div class="lab-metrics"><div><small>Aplicativos</small><strong>Android</strong><span>● Desenvolvimento</span></div><div><small>Projetos</small><strong>Web</strong><span>● Interface</span></div><div><small>Organização</small><strong>Sistemas</strong><span>● Gestão</span></div></div><div class="lab-inner-grid"><div class="lab-graph"><span>Atividades de desenvolvimento</span><div class="lab-graph-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><small>Visão ilustrativa</small></div><div class="lab-tasks"><span>Próximas etapas</span><div><i>✓</i> Layout responsivo</div><div><i>✓</i> Código organizado</div><div><i>✓</i> Experiência intuitiva</div></div></div></div></div></div><div class="lab-floating-note note-left">✦ Layout adaptável</div><div class="lab-floating-note note-right">✓ Preview interativa</div></div>
+      <p class="lab-disclaimer">Demonstração visual interativa do portfólio — não é um sistema de gestão conectado a um banco de dados.</p>
+    </div></section>
+
+    <section id="projetos" class="section section-projects"><div class="container"><div class="section-heading reveal"><span class="section-label">04 / MEU CÓDIGO</span><h2>Projetos em <span class="highlight">destaque.</span></h2><p>Alguns repositórios públicos do meu GitHub. As capas abaixo são ilustrações; você pode substituí-las por capturas reais dos aplicativos.</p></div><div class="project-filters reveal" role="group" aria-label="Filtrar projetos"><button type="button" class="filter-button active" data-filter="todos" aria-pressed="true">Todos</button><button type="button" class="filter-button" data-filter="mobile" aria-pressed="false">Android / Mobile</button><button type="button" class="filter-button" data-filter="web" aria-pressed="false">Web</button><button type="button" class="filter-button" data-filter="sistemas" aria-pressed="false">Sistemas</button></div><div id="projectGrid" class="project-grid"></div><div class="all-projects"><a class="button button-outline" data-contact="github" href="https://github.com/rafaellimeiracarlos-cmd" target="_blank" rel="noopener noreferrer">Ver todos no GitHub ↗</a></div></div></section>
+
+    <section id="habilidades" class="section section-skills"><div class="container skills-grid"><div class="reveal"><span class="section-label">05 / FERRAMENTAS</span><h2>Aprendizado e <span class="highlight">tecnologias.</span></h2><p>Conhecimentos e áreas de estudo que fazem parte dos meus projetos. Esta lista pode ser editada em <code>config.js</code>.</p></div><div class="skills-panel reveal"><div class="skills-panel-title"><span>◉</span> Stack & competências</div><div id="skillsList" class="skill-tags"></div><div class="skills-panel-footer"><span class="green-dot"></span> Em constante evolução</div></div></div></section>
+
+    <section id="contato" class="section section-contact"><div class="container contact-grid"><div class="reveal"><span class="section-label">06 / CONTATO</span><h2>Vamos criar algo <span class="highlight">incrível?</span></h2><p>Buscando um desenvolvedor para sua equipe ou tem uma ideia de projeto? Entre em contato e vamos conversar.</p><div id="contactLinks" class="contact-links"></div><p class="contact-note">Dados de contato editáveis em <code>config.js</code>. Nenhum formulário envia dados para um servidor.</p></div><form class="contact-form reveal" id="contactForm"><div class="form-heading"><span class="form-icon">✉</span><div><h3>Envie uma mensagem</h3><p>Prepare um e-mail com os dados abaixo.</p></div></div><label for="nomeContato">Seu nome</label><input id="nomeContato" name="nome" type="text" required maxlength="100" autocomplete="name" placeholder="Como posso chamar você?"><label for="emailContato">Seu e-mail</label><input id="emailContato" name="email" type="email" required maxlength="150" autocomplete="email" placeholder="voce@exemplo.com"><label for="mensagemContato">Sua mensagem</label><textarea id="mensagemContato" name="mensagem" rows="4" required maxlength="2000" placeholder="Conte um pouco sobre a oportunidade ou ideia..."></textarea><button class="button button-primary form-submit" type="submit">Abrir meu aplicativo de e-mail ↗</button><p id="formFeedback" class="form-feedback" role="status" aria-live="polite"></p></form></div></section>
   </main>
-  <footer class="footer">
-    
-    <div class="container footer-inner">
-      <a class="brand" href="#inicio">
-        <span class="brand-mark">RL</span>
-        <span>Rafael<span class="blue">.</span>Dev</span></a><p>© <span id="year"></span> 
-          <span data-field="nome">Rafael Limeira</span>. Desenvolvido com dedicação.</p>
-          <a href="#inicio">Voltar ao topo ↑</a></div></footer>
- 
-          <script src="config.js"></script>
-          <script src="script.js"></script>
+  <footer class="footer"><div class="container footer-inner"><a class="brand" href="#inicio"><span class="brand-symbol">&lt;/&gt;</span><span>Rafael<span class="brand-dot">.</span>Dev</span></a><p>© <span id="year"></span> <span data-field="nome">Rafael Limeira Carlos</span> · Desenvolvido com dedicação.</p><a href="#inicio">Voltar ao topo ↑</a></div></footer>
+  <a href="#inicio" class="back-top" id="backTop" aria-label="Voltar ao topo">↑</a>
 </body>
 </html>
