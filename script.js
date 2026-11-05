@@ -39,6 +39,18 @@ document.addEventListener('click', event => {
   if (menu.classList.contains('open') && !event.target.closest('.site-header')) closeMenu();
 });
 
+// Retorno ao topo: funciona também quando a URL já contém #inicio.
+// Usa rolagem direta no documento e respeita a preferência de movimento reduzido.
+const goToTop = event => {
+  event.preventDefault();
+  const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth';
+  window.scrollTo({ top: 0, left: 0, behavior });
+  document.documentElement.scrollTo({ top: 0, left: 0, behavior });
+  // Evita que o histórico acumule cliques e mantém a URL limpa.
+  if (window.location.hash) history.replaceState(null, '', window.location.pathname + window.location.search);
+};
+document.querySelectorAll('[data-scroll-top]').forEach(link => link.addEventListener('click', goToTop));
+
 // Barra de rolagem e botão de voltar.
 const progress = $('#readingProgress');
 const backTop = $('#backTop');
@@ -82,25 +94,63 @@ if (window.matchMedia('(hover: hover) and (pointer: fine)').matches && !window.m
   });
 }
 
-// Demonstração realmente interativa da responsividade.
+// Demonstração funcional: site, tablet, Android e iPhone.
 const lab = $('#labDevice');
 const labLabel = $('#labViewportLabel');
-const deviceNames = { desktop:'DESKTOP', tablet:'TABLET', mobile:'MOBILE' };
-$$('.device-switch').forEach(button => button.addEventListener('click', () => {
-  const selected = button.dataset.device;
+const demoFrame = $('#demoFrame');
+const demoSpace = $('#labFrameSpace');
+const deviceNames = { desktop:'WEB', tablet:'TABLET', android:'ANDROID', ios:'iOS' };
+let currentDevice = 'desktop';
+function resizeDemo() {
+  const mobile = currentDevice === 'android' || currentDevice === 'ios';
+  const frameWidth = mobile ? 390 : currentDevice === 'tablet' ? 740 : 1050;
+  const frameHeight = mobile ? 830 : currentDevice === 'tablet' ? 770 : 710;
+  const scale = Math.min(demoSpace.clientWidth / frameWidth, demoSpace.clientHeight / frameHeight);
+  demoFrame.style.width = `${frameWidth}px`;
+  demoFrame.style.height = `${frameHeight}px`;
+  demoFrame.style.transform = `translate(-50%, -50%) scale(${scale})`;
+}
+function setDemoDevice(selected) {
   if (!Object.hasOwn(deviceNames, selected)) return;
+  currentDevice = selected;
   lab.className = `lab-device ${selected}`;
   labLabel.textContent = deviceNames[selected];
-  $$('.device-switch').forEach(other => {
-    const active = other === button;
-    other.classList.toggle('active', active);
-    other.setAttribute('aria-pressed', String(active));
+  $$('.device-switch').forEach(button => {
+    const active = button.dataset.device === selected;
+    button.classList.toggle('active', active);
+    button.setAttribute('aria-pressed', String(active));
   });
-}));
+  if (demoFrame.contentWindow) demoFrame.contentWindow.postMessage({type:'rafael-platform',platform:selected === 'desktop' ? 'web' : selected}, '*');
+  requestAnimationFrame(resizeDemo);
+  setTimeout(resizeDemo, 580);
+}
+$$('.device-switch').forEach(button => button.addEventListener('click', () => setDemoDevice(button.dataset.device)));
+demoFrame.addEventListener('load', () => setDemoDevice(currentDevice));
+if ('ResizeObserver' in window) new ResizeObserver(resizeDemo).observe(demoSpace);
+window.addEventListener('resize', resizeDemo);
+resizeDemo();
+$('#demoReset').addEventListener('click', () => {
+  try { demoFrame.contentWindow.localStorage.removeItem('rafael_demo_v7'); } catch(error) {}
+  demoFrame.src = `demo.html?reset=${Date.now()}`;
+  setDemoDevice('desktop');
+});
 
 // Projetos: aceita screenshots reais quando você adicioná-las, usando uma arte de exemplo nos demais.
 const projectGrid = $('#projectGrid');
 const projectCategories = new Set(['mobile', 'web', 'sistemas']);
+const projectDialog = $('#projectDialog');
+const allProjectsCount = $('#allProjectsCount');
+if (allProjectsCount) allProjectsCount.textContent = String(Array.isArray(app.projetos) ? app.projetos.length : 0);
+$('#closeProjectDialog').addEventListener('click', () => projectDialog.close());
+projectDialog.addEventListener('click', event => { if (event.target === projectDialog) projectDialog.close(); });
+function openProject(project) {
+  $('#projectDialogTitle').textContent = project.titulo || 'Projeto';
+  $('#projectDialogDescription').textContent = project.descricao || 'Conheça este projeto no repositório.';
+  $('#projectDialogCategory').textContent = project.destaque || project.tipo || 'Desenvolvimento';
+  $('#projectDialogTags').replaceChildren(...(Array.isArray(project.tecnologias) ? project.tecnologias : []).map(value => el('span','',value)));
+  const link = $('#projectDialogLink'); const href = validUrl(project.link); link.hidden = !href; if (href) link.href = href;
+  if (typeof projectDialog.showModal === 'function') projectDialog.showModal();
+}
 function el(name, className, text) {
   const element = document.createElement(name);
   if (className) element.className = className;
@@ -129,13 +179,13 @@ function renderProjects(filter='todos') {
     const article = el('article', 'project-card');
     const visual = el('div', `project-visual visual-${category}`);
     const imagePath = localFile(project.imagem) || validUrl(project.imagem);
-    const tag = el('span', 'project-visual-tag', project.imagem ? 'PROJETO' : 'CAPA ILUSTRATIVA');
+    const tag = el('span', 'project-visual-tag', project.imagem ? 'CAPTURA DO PROJETO' : 'CONCEITO VISUAL');
     if (imagePath) {
       const img = el('img', 'project-screenshot');
       img.src = imagePath;
       img.loading = 'lazy';
       img.alt = `Captura de tela do projeto ${project.titulo || ''}`;
-      img.addEventListener('error', () => { img.replaceWith(mockProjectImage(project, category)); tag.textContent = 'CAPA ILUSTRATIVA'; }, { once:true });
+      img.addEventListener('error', () => { img.replaceWith(mockProjectImage(project, category)); tag.textContent = 'CONCEITO VISUAL'; }, { once:true });
       visual.append(img);
     } else { visual.append(mockProjectImage(project, category)); }
     visual.append(tag);
@@ -145,7 +195,8 @@ function renderProjects(filter='todos') {
     const desc = el('p', '', project.descricao || 'Veja mais sobre este projeto.');
     const tags = el('div', 'project-tags');
     (Array.isArray(project.tecnologias) ? project.tecnologias : []).forEach(value => tags.append(el('span','',value)));
-    content.append(type, title, desc, tags);
+    const details = el('button', 'project-details', 'Conhecer projeto ↗'); details.type='button'; details.addEventListener('click', () => openProject(project));
+    content.append(type, title, desc, tags, details);
     const href = validUrl(project.link);
     if (href) {
       const link = el('a', 'project-link');
@@ -169,14 +220,65 @@ $$('.filter-button').forEach(button => button.addEventListener('click', () => {
   renderProjects(filter);
 }));
 
-// Competências configuradas pelo usuário.
+// Painel interativo de competências; a lista vem do config.js.
+const availableSkills = Array.isArray(app.habilidades) ? app.habilidades : [];
 const skillsList = $('#skillsList');
-(Array.isArray(app.habilidades) ? app.habilidades : []).forEach(skill => skillsList.append(el('span', '', skill)));
+const countEl = $('#skillsCount');
+if (countEl) countEl.textContent = String(availableSkills.length).padStart(2, '0');
+const skillGroups = {
+  mobile: {icon:'◈', eyebrow:'ÁREA 01 / 03', title:'Desenvolvimento Mobile', description:'Aplicativos Android e interfaces pensadas para uma experiência intuitiva no celular.', application:'Aplicativos Android, telas responsivas e fluxos de navegação.', keywords:['Kotlin','Java','Android'], fallback:['Kotlin','Android']},
+  web: {icon:'⌘', eyebrow:'ÁREA 02 / 03', title:'Experiências Web', description:'Páginas responsivas, componentes interativos e interfaces que se adaptam a diferentes dispositivos.', application:'Sites, portfólios interativos e interfaces para sistemas web.', keywords:['HTML5','CSS3','JavaScript','Design responsivo'], fallback:['HTML5','CSS3']},
+  sistemas: {icon:'▤', eyebrow:'ÁREA 03 / 03', title:'Sistemas & Engenharia', description:'Organização de soluções digitais, lógica de programação e ferramentas para transformar processos em software.', application:'Sistemas de gestão, versionamento de código e organização de projetos.', keywords:['Git','GitHub','Lógica de programação','Análise de Sistemas','Sistemas de Gestão'], fallback:['Git','GitHub']}
+};
+function showSkillGroup(key, focusTab=false) {
+  const group = skillGroups[key]; if (!group) return;
+  const panel = $('#skillDetail');
+  $$('.skills-tab').forEach(button => {
+    const selected = button.dataset.skillGroup === key;
+    button.classList.toggle('active', selected);
+    button.setAttribute('aria-selected', String(selected));
+    button.tabIndex = selected ? 0 : -1;
+    if (selected) {panel.setAttribute('aria-labelledby', button.id); if (focusTab) button.focus();}
+  });
+  $('#skillBadge').textContent = group.icon;
+  $('#skillEyebrow').textContent = group.eyebrow;
+  $('#skillTitle').textContent = group.title;
+  $('#skillDescription').textContent = group.description;
+  $('#skillApplication').textContent = group.application;
+  skillsList.replaceChildren();
+  const matching = availableSkills.filter(skill => group.keywords.some(keyword => skill.toLocaleLowerCase('pt-BR') === keyword.toLocaleLowerCase('pt-BR')));
+  (matching.length ? matching : availableSkills.slice(0, 4)).forEach((skill, index) => {
+    const chip = el('span', 'skill-chip', skill);
+    chip.style.setProperty('--chip-delay', `${index * 55}ms`);
+    skillsList.append(chip);
+  });
+  panel.classList.remove('skill-panel-enter');
+  void panel.offsetWidth;
+  panel.classList.add('skill-panel-enter');
+}
+$$('.skills-tab').forEach(button => {
+  button.addEventListener('click', () => showSkillGroup(button.dataset.skillGroup));
+  button.addEventListener('keydown', event => {
+    if (!['ArrowLeft','ArrowRight','Home','End'].includes(event.key)) return;
+    event.preventDefault();
+    const tabs = $$('.skills-tab');
+    const idx = tabs.indexOf(button);
+    const next = event.key === 'Home' ? 0 : event.key === 'End' ? tabs.length - 1 : (idx + (event.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+    showSkillGroup(tabs[next].dataset.skillGroup, true);
+  });
+});
+showSkillGroup('mobile');
 
 // Mostrar contatos APENAS quando houver um destino válido.
 const contactLinks = $('#contactLinks');
 function addContact(label, href, external=false) {
-  const a = el('a', '', `${label} ↗`);
+  const a = el('a', 'contact-button', '');
+  const symbol = el('span', 'contact-button-icon', label.split(' ')[0]);
+  const title = el('span', 'contact-button-label', label.substring(label.indexOf(' ') + 1));
+  const arrow = el('span', 'contact-button-arrow', '↗');
+  arrow.setAttribute('aria-hidden', 'true');
+  a.append(symbol, title, arrow);
+  a.setAttribute('aria-label', label.substring(label.indexOf(' ') + 1));
   a.href = href;
   if (external) { a.target='_blank'; a.rel='noopener noreferrer'; }
   contactLinks.append(a);
